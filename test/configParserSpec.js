@@ -7,10 +7,11 @@ const ConfigParser = require('../src/ConfigParser')
 chai.should()
 
 describe('ConfigParser', () => {
-  const genPath = (name) => `generatedFiles/${name}.json`
+  const genPath = (name) => `./generatedFiles/${name}.json`
 
   const genConfigFile = (path, config) => {
-    fs.open(`./${path}`, 'a', (err, fd) => {
+    const filePath = `test/${path.slice(1)}`
+    fs.open(filePath, 'a', (err, fd) => {
       if (err) throw err
       fs.appendFile(fd, JSON.stringify(config), 'utf8', (err) => {
         fs.close(fd, (err) => {
