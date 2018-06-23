@@ -1,0 +1,11 @@
+{{#each tvLinks}}
+  <div class="columns">
+    {{#each this}}
+      <div class="column">
+        <a href="{{{ this.url }}}" target="_blank">
+          <img src="{{{ this.img }}}" width="100%" />
+        </a>
+      </div>
+    {{/each}}
+  </div>
+{{/each}}
