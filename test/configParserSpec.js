@@ -1,3 +1,4 @@
+const Bluebird = require('bluebird')
 const chai = require('chai')
 const Gen = require('verify-it').Gen
 const fs = require('fs')
@@ -7,36 +8,29 @@ const ConfigParser = require('../src/ConfigParser')
 chai.should()
 
 describe('ConfigParser', () => {
-  const genPath = (name) => `./generatedFiles/${name}.json`
+  const genPath = (name) => `test/generatedFiles/${name}.json`
 
   const genConfigFile = (path, config) => {
-    const filePath = `test/${path.slice(1)}`
-    fs.open(filePath, 'a', (err, fd) => {
-      if (err) throw err
-      fs.appendFile(fd, JSON.stringify(config), 'utf8', (err) => {
-        fs.close(fd, (err) => {
-          if (err) throw err
-        })
-        if (err) throw err
-      })
-    })
+    const content = JSON.stringify(config)
+    fs.writeFileSync(path, content)
   }
 
   const removeConfigFile = (path) => {
     fs.unlink(path, (err) => {
       if (err) throw err
-      console.log(`${path} was deleted`)
     })
   }
-
-  //afterEach(() => removeConfigFile())
 
   verify.it('should return loaded config from a path', Gen.object, Gen.word, (config, filename) => {
     const parser = new ConfigParser()
     const path = genPath(filename)
-    genConfigFile(path, config)
-    const result = parser.load(path)
-    removeConfigFile(path)
-    result.should.eql(config)
+
+    return Bluebird.resolve()
+      .then(() => genConfigFile(path, config))
+      .then(() => parser.load(path))
+      .then((result) => result.should.eql(config))
+      .finally(() => {
+        removeConfigFile(path)
+      })
   })
 })

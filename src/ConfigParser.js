@@ -1,6 +1,8 @@
+const fs = require('fs')
+
 class ConfigParser {
   load(path) {
-    return require(path)
+    return JSON.parse(fs.readFileSync(path, 'utf8'))
   }
 }
 module.exports = ConfigParser

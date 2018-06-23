@@ -9,6 +9,7 @@
     "unit-test": "mocha test/*"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "bulma": "^0.7.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

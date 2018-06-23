@@ -12,8 +12,8 @@ const usersRouter = require('./src/routes/users')
 
 const app = express()
 
-const configParser = new ConfigParser('./config/')
-const handlebarsConfig = configParser.get('handlebarsConfig')
+const configParser = new ConfigParser()
+const handlebarsConfig = configParser.load('src/config/handlebarsConfig.json')
 
 app.engine('.hbs', exphbs(handlebarsConfig))
 app.set('view engine', '.hbs')
