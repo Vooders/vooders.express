@@ -8,7 +8,7 @@ const ConfigParser = require('../src/ConfigParser')
 chai.should()
 
 describe('ConfigParser', () => {
-  const genPath = (name) => `test/generatedFiles/${name}.json`
+  const genPath = () => `test/generatedFiles/${Gen.word()}.json`
 
   const genConfigFile = (path, config) => {
     const content = JSON.stringify(config)
@@ -21,9 +21,9 @@ describe('ConfigParser', () => {
     })
   }
 
-  verify.it('should return loaded config from a path', Gen.object, Gen.word, (config, filename) => {
+  verify.it('should return loaded config from a path', Gen.object, (config) => {
     const parser = new ConfigParser()
-    const path = genPath(filename)
+    const path = genPath()
 
     return Bluebird.resolve()
       .then(() => genConfigFile(path, config))
