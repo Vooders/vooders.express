@@ -3,8 +3,7 @@ const chai = require('chai')
 const chaiAsPromised = require('chai-as-promised')
 const Gen = require('verify-it').Gen
 const fs = require('fs')
-
-const ConfigParser = require('../src/ConfigParser')
+const configParser = require('../src/configParser')
 
 chai.use(chaiAsPromised)
 chai.should()
@@ -24,12 +23,11 @@ describe('ConfigParser', () => {
   }
 
   verify.it('should return loaded config from a path', Gen.object, (config) => {
-    const parser = new ConfigParser()
     const path = genPath()
 
     return Bluebird.resolve()
       .then(() => writeConfigFile(path, config))
-      .then(() => parser.load(path))
+      .then(() => configParser.load(path))
       .then((result) => result.should.eql(config))
       .finally(() => {
         removeConfigFile(path)

@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const ConfigParser = require('../ConfigParser')
+const configParser = require('../configParser')
 
-const configParser = new ConfigParser()
 const tvLinks = configParser.load('src/config/tvLinks.json')
 
 router.get('/', (req, res, next) => res.render('pages/index', { title: 'home' }))

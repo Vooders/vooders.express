@@ -5,14 +5,13 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
 const exphbs = require('express-handlebars')
-const ConfigParser = require('./src/ConfigParser')
+const configParser = require('./src/configParser')
 
 const indexRouter = require('./src/routes/index')
 const usersRouter = require('./src/routes/users')
 
 const app = express()
 
-const configParser = new ConfigParser()
 const handlebarsConfig = configParser.load('src/config/handlebarsConfig.json')
 
 app.engine('.hbs', exphbs(handlebarsConfig))
