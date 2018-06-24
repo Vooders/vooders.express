@@ -35,10 +35,4 @@ describe('ConfigParser', () => {
         removeConfigFile(path)
       })
   })
-
-  verify.it('should throw config not found error if path is invalid', () => {
-    const parser = new ConfigParser()
-    const path = genPath()
-    parser.load(path).should.eventually.throw(Error('invalid config path'))
-  })
 })

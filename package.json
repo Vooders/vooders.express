@@ -5,7 +5,7 @@
   "scripts": {
     "build-sass": "node-sass --output-style minified --source-map true node_modules/bulma/bulma.sass public/css/bulma.min.css",
     "start": "node ./bin/www",
-    "start-dev": "nodemon ./bin/www",
+    "start-dev": "npm run unit-test && nodemon ./bin/www",
     "unit-test": "mocha test/*"
   },
   "dependencies": {

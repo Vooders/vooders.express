@@ -4,7 +4,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
-const exphbs  = require('express-handlebars')
+const exphbs = require('express-handlebars')
 const ConfigParser = require('./src/ConfigParser')
 
 const indexRouter = require('./src/routes/index')
