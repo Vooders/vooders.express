@@ -18,7 +18,8 @@ app.engine('.hbs', exphbs(handlebarsConfig))
 app.set('view engine', '.hbs')
 app.set('views', './src/views')
 
-app.use(logger('dev'))
+if(process.env.NODE_ENV !== 'test') app.use(logger('dev'))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())

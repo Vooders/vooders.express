@@ -11,17 +11,19 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "bulma": "^0.7.1",
-    "chai-as-promised": "^7.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-handlebars": "^3.0.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "node-sass-middleware": "0.11.0",
-    "verify-it": "^1.2.1"
+    "node-sass-middleware": "0.11.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.0.0",
+    "supertest": "^3.1.0",
+    "verify-it": "^1.2.1"
   }
 }
