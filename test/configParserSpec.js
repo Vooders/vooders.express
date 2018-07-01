@@ -24,33 +24,42 @@ describe('ConfigParser', () => {
     })
   }
 
-  verify.it('should return loaded config from a given path', Gen.object, (config) => {
-    const path = genPath()
-    return Bluebird.resolve()
-      .then(() => writeConfigFile(path, config))
-      .then(() => configParser.loadFile(path))
-      .then((result) => result.should.eql(config))
-      .finally(() => {
-        removeConfigFile(path)
-      })
+  describe('loadFile', () => {
+    verify.it('should return loaded config from a given path', Gen.object, (config) => {
+      const path = genPath()
+      return Bluebird.resolve()
+        .then(() => writeConfigFile(path, config))
+        .then(() => configParser.loadFile(path))
+        .then((result) => result.should.eql(config))
+        .finally(() => {
+          removeConfigFile(path)
+        })
+    })
   })
-
-  verify.it('should load an object from a given key & path', Gen.object, Gen.word, (data, key) => {
-    const path = genPath()
-    return Bluebird.resolve()
-      .then(() => writeConfigFile(path, {[key]: data}))
-      .then(() => configParser.loadObject(path, key))
-      .then((result) => result.should.eql(data))
-      .finally(() => {
-        removeConfigFile(path)
-      })
+  
+  describe('loadObject', () => {
+    verify.it('should load an object from a given key & path', Gen.object, Gen.word, (data, key) => {
+      const path = genPath()
+      return Bluebird.resolve()
+        .then(() => writeConfigFile(path, { [key]: data }))
+        .then(() => configParser.loadObject(path, key))
+        .then((result) => result.should.eql(data))
+        .finally(() => {
+          removeConfigFile(path)
+        })
+    })
   })
 
   describe('loads config files', () => {
     fs.readdirSync(CONFIG_PATH).map((file) => {
-      let configPath = Path.join(CONFIG_PATH, file)
-      it(`should load ${file}`, () => {
-        configParser.loadFile(configPath).should.eql(require(`../${configPath}`))
+      describe(`${file}`, () => {
+        let configPath = Path.join(CONFIG_PATH, file)
+        it(`should load`, () => {
+          configParser.loadFile(configPath).should.eql(require(`../${configPath}`))
+        })
+        it(`should be an object`, () => {
+          configParser.loadFile(configPath).should.be.an('Object')
+        })
       })
     })
   })

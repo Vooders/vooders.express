@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build-sass": "node-sass --output-style minified --source-map true node_modules/bulma/bulma.sass public/css/bulma.min.css",
+    "install-dev": "./scripts/install-dev.sh && npm run build-sass",
     "start": "node ./bin/www",
     "start-dev": "npm run unit-test && nodemon ./bin/www",
     "unit-test": "mocha test/*"
