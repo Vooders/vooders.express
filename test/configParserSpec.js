@@ -35,6 +35,17 @@ describe('ConfigParser', () => {
       })
   })
 
+  verify.it('should load an object from a given key & path', Gen.object, Gen.word, (data, key) => {
+    const path = genPath()
+    return Bluebird.resolve()
+      .then(() => writeConfigFile(path, {[key]: data}))
+      .then(() => configParser.loadObject(path, key))
+      .then((result) => result.should.eql(data))
+      .finally(() => {
+        removeConfigFile(path)
+      })
+  })
+
   describe('loads config files', () => {
     fs.readdirSync(CONFIG_PATH).map((file) => {
       let configPath = Path.join(CONFIG_PATH, file)

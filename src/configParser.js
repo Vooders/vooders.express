@@ -4,9 +4,8 @@ const configParser = {
   loadFile (path) {
     return JSON.parse(fs.readFileSync(path, 'utf8'))
   },
-
-  append (path, content) {
-    return null
+  loadObject (path, key) {
+    return JSON.parse(fs.readFileSync(path, 'utf8'))[key]
   }
 }
 
