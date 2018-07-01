@@ -22,8 +22,8 @@ describe('Routes', () => {
       })
     })
 
-    it('should get 404 from an invalid path', Gen.string, (page) => {
-      supertest.get(`/${path}`)
+    it('should get 404 from an invalid path', Gen.string, (done, page) => {
+      supertest.get(`/${page}`)
         .expect(404, done)
     })
   })
