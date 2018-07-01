@@ -10,6 +10,7 @@ chai.use(chaiAsPromised)
 chai.should()
 
 describe('ConfigParser', () => {
+  const CONFIG_PATH = 'src/config'
   const genPath = () => `test/generatedFiles/${Gen.word()}.json`
 
   const writeConfigFile = (path, config) => {
@@ -25,7 +26,6 @@ describe('ConfigParser', () => {
 
   verify.it('should return loaded config from a given path', Gen.object, (config) => {
     const path = genPath()
-
     return Bluebird.resolve()
       .then(() => writeConfigFile(path, config))
       .then(() => configParser.loadFile(path))
@@ -35,14 +35,12 @@ describe('ConfigParser', () => {
       })
   })
 
-  const CONFIG_PATH = 'src/config'
-
   describe('loads config files', () => {
     fs.readdirSync(CONFIG_PATH).map((file) => {
       let configPath = Path.join(CONFIG_PATH, file)
-        it(`should load ${file}`, () => {
-          configParser.loadFile(configPath).should.eql(require(`../${configPath}`))
-        })
+      it(`should load ${file}`, () => {
+        configParser.loadFile(configPath).should.eql(require(`../${configPath}`))
+      })
     })
   })
 })
