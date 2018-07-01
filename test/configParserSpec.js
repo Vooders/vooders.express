@@ -50,7 +50,7 @@ describe('ConfigParser', () => {
     })
   })
 
-  describe('loads config files', () => {
+  describe('Config Files', () => {
     fs.readdirSync(CONFIG_PATH).map((file) => {
       describe(`${file}`, () => {
         let configPath = Path.join(CONFIG_PATH, file)

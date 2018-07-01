@@ -27,4 +27,21 @@ describe('Routes', () => {
         .expect(404, done)
     })
   })
+
+  describe('/users', () => {
+    const routePrefix = '/users'
+    const usersRoutes = ['/']
+
+    usersRoutes.map((path) => {
+      it(`should get 200 from ${routePrefix}${path}`, (done) => {
+        supertest.get(path)
+          .expect(200, done)
+      })
+    })
+
+    it('should get 404 from an invalid path', Gen.string, (done, page) => {
+      supertest.get(`/users/${page}`)
+        .expect(404, done)
+    })
+  })
 })
