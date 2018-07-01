@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const configParser = {
-  load (path) {
+  loadFile (path) {
     return JSON.parse(fs.readFileSync(path, 'utf8'))
   },
 

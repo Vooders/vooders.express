@@ -28,7 +28,7 @@ describe('ConfigParser', () => {
 
     return Bluebird.resolve()
       .then(() => writeConfigFile(path, config))
-      .then(() => configParser.load(path))
+      .then(() => configParser.loadFile(path))
       .then((result) => result.should.eql(config))
       .finally(() => {
         removeConfigFile(path)
@@ -41,7 +41,7 @@ describe('ConfigParser', () => {
     fs.readdirSync(CONFIG_PATH).map((file) => {
       let configPath = Path.join(CONFIG_PATH, file)
         it(`should load ${file}`, () => {
-          configParser.load(configPath).should.eql(require(`../${configPath}`))
+          configParser.loadFile(configPath).should.eql(require(`../${configPath}`))
         })
     })
   })
