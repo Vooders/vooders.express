@@ -13,14 +13,13 @@ describe('Routes', () => {
   const supertest = Supertest(app)
 
   describe('index', () => {
-    it('should get 200 from /', (done) => {
-      supertest.get('/')
-        .expect(200, done)
-    })
+    const indexRoutes = ['/', '/tv']
 
-    it('should get 200 from /tv', (done) => {
-      supertest.get('/tv')
-        .expect(200, done)
+    indexRoutes.map((path) => {
+      it(`should get 200 from ${path}`, (done) => {
+        supertest.get(path)
+          .expect(200, done)
+      })
     })
 
     it('should get 404 from an invalid path', Gen.string, (page) => {
