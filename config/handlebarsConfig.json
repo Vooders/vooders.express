@@ -1,0 +1,6 @@
+{
+  "defaultLayout": "main", 
+  "extname": ".hbs",
+  "layoutsDir":"templates/layouts",
+  "partialsDir":"templates/partials"
+}

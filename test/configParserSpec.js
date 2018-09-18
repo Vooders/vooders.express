@@ -10,7 +10,7 @@ chai.use(chaiAsPromised)
 chai.should()
 
 describe('ConfigParser', () => {
-  const CONFIG_PATH = 'src/config'
+  const CONFIG_PATH = 'config'
   const genPath = () => `test/generatedFiles/${Gen.word()}.json`
 
   const writeConfigFile = (path, config) => {
@@ -36,7 +36,7 @@ describe('ConfigParser', () => {
         })
     })
   })
-  
+
   describe('loadObject', () => {
     verify.it('should load an object from a given key & path', Gen.object, Gen.word, (data, key) => {
       const path = genPath()
