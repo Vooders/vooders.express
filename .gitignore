@@ -1,5 +1,7 @@
 test/generatedFiles
 .vs 
+.dist
+test-reports
 
 # Logs
 logs
