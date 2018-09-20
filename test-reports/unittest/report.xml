@@ -1,0 +1,28 @@
+<testsuites name="Mocha Tests">
+  <testsuite name="ConfigParser loadFile" tests="1" errors="0" failures="0" skipped="0" timestamp="2018-09-20T19:22:44" time="0.01">
+    <testcase classname="ConfigParser loadFile" name="should return loaded config from a given path" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="ConfigParser loadObject" tests="1" errors="0" failures="0" skipped="0" timestamp="2018-09-20T19:22:44" time="0.003">
+    <testcase classname="ConfigParser loadObject" name="should load an object from a given key &amp; path" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ConfigParser Loading Config Files" tests="4" errors="0" failures="0" skipped="0" timestamp="2018-09-20T19:22:44" time="0.002">
+    <testcase classname="ConfigParser Loading Config Files" name="handlebarsConfig.json should load" time="0">
+    </testcase>
+    <testcase classname="ConfigParser Loading Config Files" name="handlebarsConfig.json should return an object" time="0.001">
+    </testcase>
+    <testcase classname="ConfigParser Loading Config Files" name="tvLinks.json should load" time="0">
+    </testcase>
+    <testcase classname="ConfigParser Loading Config Files" name="tvLinks.json should return an object" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Routes index" tests="3" errors="0" failures="0" skipped="0" timestamp="2018-09-20T19:22:44" time="0.078">
+    <testcase classname="Routes index" name="should get 200 from /" time="0.051">
+    </testcase>
+    <testcase classname="Routes index" name="should get 200 from /tv" time="0.017">
+    </testcase>
+    <testcase classname="Routes index" name="should get 404 from an invalid path" time="0.01">
+    </testcase>
+  </testsuite>
+</testsuites>

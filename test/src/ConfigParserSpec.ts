@@ -1,24 +1,21 @@
-const Bluebird = require('bluebird')
-const chai = require('chai')
-const chaiAsPromised = require('chai-as-promised')
-const Gen = require('verify-it').Gen
-const fs = require('fs')
-const configParser = require('../src/configParser')
-const Path = require('path')
+import * as Bluebird from 'bluebird'
+import * as fs from 'fs'
+import * as Path from 'path'
+import { ConfigParser } from '../../src/ConfigParser'
+import { Gen } from 'verify-it'
 
-chai.use(chaiAsPromised)
-chai.should()
+const configParser = new ConfigParser()
 
 describe('ConfigParser', () => {
   const CONFIG_PATH = 'config'
-  const genPath = () => `test/generatedFiles/${Gen.word()}.json`
+  const genPath = () => `test/src/generatedFiles/${Gen.word()}.json`
 
-  const writeConfigFile = (path, config) => {
+  const writeConfigFile = (path: string, config: object) => {
     const content = JSON.stringify(config)
     fs.writeFileSync(path, content)
   }
 
-  const removeConfigFile = (path) => {
+  const removeConfigFile = (path: string) => {
     fs.unlink(path, (err) => {
       if (err) throw err
     })
@@ -50,16 +47,14 @@ describe('ConfigParser', () => {
     })
   })
 
-  describe('Config Files', () => {
+  describe('Loading Config Files', () => {
     fs.readdirSync(CONFIG_PATH).map((file) => {
-      describe(`${file}`, () => {
-        let configPath = Path.join(CONFIG_PATH, file)
-        it(`should load`, () => {
-          configParser.loadFile(configPath).should.eql(require(`../${configPath}`))
-        })
-        it(`should be an object`, () => {
-          configParser.loadFile(configPath).should.be.an('Object')
-        })
+      let configPath = Path.join(CONFIG_PATH, file)
+      it(`${file} should load`, () => {
+        configParser.loadFile(configPath).should.eql(require(`../../../${configPath}`))
+      })
+      it(`${file} should return an object`, () => {
+        configParser.loadFile(configPath).should.be.an('Object')
       })
     })
   })
