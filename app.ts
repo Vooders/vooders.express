@@ -4,7 +4,6 @@ import * as cookieParser from 'cookie-parser'
 import * as logger from 'morgan'
 import * as sassMiddleware from 'node-sass-middleware'
 import * as exphbs from 'express-handlebars'
-
 import { Application, Router } from "express"
 import { ConfigParser } from "./src/ConfigParser"
 
@@ -38,7 +37,9 @@ app.use(Express.static(PUBLIC_DIR))
 app.use('/', router)
 
 app.use((req, res, next) => {
-  next(createError(404))
+  const error = createError(404)
+  error.message = 'Page not found'
+  next(error)
 })
 
 app.use((err: any, req: Express.Request, res: Express.Response, next: Express.NextFunction) => {

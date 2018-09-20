@@ -3,7 +3,6 @@ import { ConfigParser } from './ConfigParser'
 
 const express = require('express')
 const router: Router = express.Router()
-
 const configParser = new ConfigParser()
 const tvLinks = configParser.loadFile('config/tvLinks.json')
 
